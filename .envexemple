@@ -1,0 +1,8 @@
+
+PORT = 3000
+
+AUTHENTICATION = 
+
+MONGODB_URI = 
+
+API_UNIVERSITIES = http://universities.hipolabs.com

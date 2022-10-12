@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Api de universidades",
+        "description": "Api teste",
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "authentication"
+            }
+        }
+    },
+    "paths": {
+        "/university/new": {
+            "post": {
+                "tags": ["Universities"],
+                "security": [{"ApiKeyAuth":[]}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "alpha_two_code": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    },
+                                    "web_pages": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "domains": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "state_province": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "University registration created!"
+                    },
+                    "400": {
+                        "description": "Failed to create!"
+                    },
+                    "401": {
+                        "description": "Not authorized!"
+                    }
+                }
+            }
+        },
+        "/university/byId": {
+            "get": {
+                "tags": ["Universities"],
+                "security": [{"ApiKeyAuth":[]}],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "University!"
+                    },
+                    "400": {
+                        "description": "Failed to get!"
+                    },
+                    "401": {
+                        "description": "Not authorized!"
+                    }
+                }
+            }
+        }
+    }
+}
