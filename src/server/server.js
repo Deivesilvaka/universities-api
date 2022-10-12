@@ -9,6 +9,7 @@ const security = require('../config/security')
 const swaggerUI = require('swagger-ui-express')
 const swaggerDocument = require('../config/swagger.json')
 const packageJson = require('../../package.json')
+const StartupService = require('../services/startup-service')
 
 class Backend {
     
@@ -23,6 +24,7 @@ class Backend {
         Backend.addDocumentation()
         Backend.startEvents()
         Database.start()
+        StartupService.start()
     }
 
     static setup() {

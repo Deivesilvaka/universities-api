@@ -14,6 +14,16 @@ class UniversityValidation {
 
         return await yup.validateSchema(schema, university)
     }
+
+    static async update(university) {
+        const schema = yup.yup.object({
+            name: yup.yup.string().min(1),
+            domains: yup.yup.array().of(yup.yup.string()).min(1),
+            web_pages: yup.yup.array().of(yup.yup.string()).min(1)
+        })
+
+        return await yup.validateSchema(schema, university)
+    }
 }
 
 module.exports = UniversityValidation
