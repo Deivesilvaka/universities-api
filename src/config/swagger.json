@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Api de universidades",
-        "description": "Api teste",
+        "description": "Api de gerenciamento de universidades mundo a fora :)",
         "version": "1.0.0"
     },
     "basePath": "/",
@@ -86,6 +86,117 @@
                     },
                     "400": {
                         "description": "Failed to get!"
+                    },
+                    "401": {
+                        "description": "Not authorized!"
+                    }
+                }
+            }
+        },
+        "/universities": {
+            "get": {
+                "tags": ["Universities"],
+                "security": [{"ApiKeyAuth":[]}],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "country",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Universities!"
+                    },
+                    "400": {
+                        "description": "Failed to get!"
+                    },
+                    "401": {
+                        "description": "Not authorized!"
+                    }
+                }
+            }
+        },
+        "/university/delete": {
+            "post":{
+                "tags": ["Universities"],
+                "security": [{"ApiKeyAuth":[]}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "_id": {
+                                        "type": "string",
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "University deleted!"
+                    },
+                    "500": {
+                        "description": "Failed to delete!"
+                    },
+                    "401": {
+                        "description": "Not authorized!"
+                    }
+                }
+            }
+        },
+        "/university/update": {
+            "post": {
+                "tags": ["Universities"],
+                "security": [{"ApiKeyAuth":[]}],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "_id",
+                        "type": "string"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "web_pages": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "domains": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "University record is updated!"
+                    },
+                    "400": {
+                        "description": "Failed to update!"
                     },
                     "401": {
                         "description": "Not authorized!"
